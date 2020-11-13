@@ -1,5 +1,5 @@
 ﻿using Examen.Infrastructure.Entities;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,17 +7,19 @@ namespace Examen.Infrastructure.Repositories
 {
     public class DataRepository :  IDataRepository
     {
-
         private ExamenDBContext _context;
         public DataRepository(ExamenDBContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Proceso> GetAll()
+        public IEnumerable<Tarea> GetTareasPendientes()
         {
-            var procesos = _context.Procesos.ToList();
-            return procesos;
+            var tareas = _context.Tareas.Include(proc => proc.Proceso).
+                                            Include(task => task.Usuario)
+                                             .Include(task => task.Parametros).ToList();
+
+            return tareas.Where(x => x.TaskState == 0 );
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Examen.Extensions
     {
         public static IServiceCollection AddCoreScopedServices(this IServiceCollection services)
         {
-            services.AddScoped<IProcesoServices, ProcesoServices>();
+            services.AddScoped<IApplicationServices, ApplicacionServices>();
             services.AddScoped<IDataRepository, DataRepository>();
 
             return services;

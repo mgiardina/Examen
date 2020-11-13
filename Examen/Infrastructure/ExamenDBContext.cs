@@ -14,5 +14,7 @@ namespace Examen.Infrastructure
 
         public DbSet<Proceso> Procesos { get; set; }
         public DbSet<Tarea> Tareas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Parametro> Parametros { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Examen.Application.UseCases;
-using Examen.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -8,9 +7,9 @@ namespace Examen.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IProcesoServices _procesoServices;
+        private readonly IApplicationServices _procesoServices;
 
-        public HomeController(ILogger<HomeController> logger, IProcesoServices procesoServices)
+        public HomeController(ILogger<HomeController> logger, IApplicationServices procesoServices)
         {
             _logger = logger;
             _procesoServices = procesoServices;
@@ -19,7 +18,7 @@ namespace Examen.Controllers
         public IActionResult Index()
         {
             var result = _procesoServices.GetAll();
-            return View();
+            return View(result);
         }
 
     }
